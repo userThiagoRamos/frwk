@@ -1,7 +1,20 @@
-server.port=8661
-spring.application.name=blog-discovery-service
-eureka.instance.hostname=localhost
-eureka.client.register-with-eureka=false
-eureka.client.fetch-registry=false
-eureka.client.service-url.defaultZone=http://${eureka.instance.hostname}:${server.port}/eureka/
-eureka.server.wait-time-in-ms-when-sync-empty=0
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  instance:
+    hostname: localhost
+  server:
+    wait-time-in-ms-when-sync-empty: 0
+server:
+  port: 8661
+spring:
+  application:
+    name: blog-discovery-service
+  cloud:
+    config:
+      name: blog-configuration-service
+      uri:
+      - http://localhost:8099

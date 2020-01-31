@@ -22,8 +22,13 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:postgresql://localhost:5432/postgres
     username: frameuser
+  cloud:
+    config:
+      name: blog-configuration-service
+      uri:
+      - http://localhost:8099    
   jpa:
-    database-platform: =org.hibernate.dialect.PostgreSQL94Dialect
+    database-platform: org.hibernate.dialect.PostgreSQL94Dialect
     hibernate:
       ddl-auto: none
     properties:
@@ -41,12 +46,16 @@ zuul:
   ignored-services: '*'
   prefix: /api
   routes:
+    post-service:
+      path: /blog-post/**
+      service-id: post-service
+      strip-prefix: true  
     post-comment-service:
       path: /blog-post-comment/**
       service-id: post-comment-service
       strip-prefix: true
-    post-service:
-      path: /blog-post/**
-      service-id: post-service
-      strip-prefix: true
+    post-link-service:
+      path: /blog-link/**
+      service-id: post-link-service
+      strip-prefix: true      
   sensitiveHeaders: Cookie,Set-Cookie
