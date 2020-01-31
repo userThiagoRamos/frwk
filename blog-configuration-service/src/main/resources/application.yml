@@ -1,0 +1,23 @@
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone: http://localhost:8661/eureka/
+  instance:
+    hostname: localhost
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+server:
+  port: 8099
+spring:
+  application:
+    name: blog-configuration-service
+  cloud:    config:      server:        git:          uri: https://github.com/userThiagoRamos/frwk
+          search-paths: config-server/
+          skip-ssl-validation: true
+          username: thiagoram@gmail.com
+          password: gael@github2019
