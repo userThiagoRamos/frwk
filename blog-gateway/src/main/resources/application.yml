@@ -1,0 +1,52 @@
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone: http://localhost:8661/eureka/
+  instance:
+    hostname: localhost
+jwt:
+  secret: '{bcrypt}$blog'
+ribbon:
+  eureka:
+    enabled: true
+server:
+  port: 8662
+spring:
+  application:
+    name: blog-gateway-service
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    password: frame
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: frameuser
+  jpa:
+    database-platform: =org.hibernate.dialect.PostgreSQL94Dialect
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    show-sql: true
+zuul:
+  host:
+    connect-timeout-millis: 500000
+    socket-timeout-millis: 500000
+  ignored-services: '*'
+  prefix: /api
+  routes:
+    post-comment-service:
+      path: /blog-post-comment/**
+      service-id: post-comment-service
+      strip-prefix: true
+    post-service:
+      path: /blog-post/**
+      service-id: post-service
+      strip-prefix: true
+  sensitiveHeaders: Cookie,Set-Cookie

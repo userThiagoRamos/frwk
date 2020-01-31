@@ -1,4 +1,4 @@
-package br.com.frwk.gateway.config;
+package br.com.frwk.gateway.utils;
 
 
 

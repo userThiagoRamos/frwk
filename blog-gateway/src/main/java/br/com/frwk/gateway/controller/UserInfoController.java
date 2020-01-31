@@ -25,9 +25,7 @@ public class UserInfoController {
 	public Boolean create(@RequestBody Map<String, String> body) throws NoSuchAlgorithmException {
 		String username = body.get("username");
 		if (userInfoRepository.existsByUsername(username)) {
-
 			throw new ValidationException("Username already existed");
-
 		}
 
 		String password = body.get("password");

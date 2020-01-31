@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.frwk.gateway.config.JwtToken;
 import br.com.frwk.gateway.model.JwtRequest;
 import br.com.frwk.gateway.model.JwtResponse;
 import br.com.frwk.gateway.service.JwtUserDetailsService;
+import br.com.frwk.gateway.utils.JwtToken;
 
 @RestController
 @CrossOrigin
