@@ -22,8 +22,13 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:postgresql://localhost:5432/postgres
     username: frameuser
+  cloud:
+    config:
+      name: blog-configuration-service
+      uri:
+      - http://localhost:8099    
   jpa:
-    database-platform: =org.hibernate.dialect.PostgreSQL94Dialect
+    database-platform: org.hibernate.dialect.PostgreSQL94Dialect
     hibernate:
       ddl-auto: none
     properties:
@@ -33,4 +38,4 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
-    show-sql: true
+    show-sql: false
