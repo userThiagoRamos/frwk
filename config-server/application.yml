@@ -1,25 +1,2 @@
-spring:
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    password: frame
-    type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: frameuser
-  cloud:
-    config:
-      name: blog-configuration-service
-      uri:
-      - http://localhost:8099
-  jpa:
-    database-platform: org.hibernate.dialect.PostgreSQL94Dialect
-    hibernate:
-      ddl-auto: none
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: true
-        jdbc:
-          lob:
-            non_contextual_creation: true
-    show-sql: false
-    
+jwt:
+  secret: '{bcrypt}$blog'
