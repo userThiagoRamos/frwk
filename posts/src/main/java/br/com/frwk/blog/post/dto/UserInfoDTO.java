@@ -8,16 +8,12 @@ import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor()
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class PostDTO extends BaseDTO{
+public class UserInfoDTO extends BaseDTO{
 	
-	private static final long serialVersionUID = -6374799485976763981L;
+	private static final long serialVersionUID = -4715285991138278382L;
 	
-	private String title;
-	private String text;
 	private String username;
-	
-	
 
 }
