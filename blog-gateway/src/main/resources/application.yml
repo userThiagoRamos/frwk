@@ -21,7 +21,7 @@ spring:
     password: frame
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:postgresql://localhost:5432/postgres
-    username: frameuser
+    username: postgres
   cloud:
     config:
       name: blog-configuration-service
@@ -49,13 +49,13 @@ zuul:
     post-service:
       path: /blog-post/**
       service-id: post-service
-      strip-prefix: true  
+      strip-prefix: true
     post-comment-service:
-      path: /blog-post-comment/**
+      path: /blog-comment/**
       service-id: post-comment-service
       strip-prefix: true
     post-link-service:
       path: /blog-link/**
       service-id: post-link-service
-      strip-prefix: true      
+      strip-prefix: true
   sensitiveHeaders: Cookie,Set-Cookie

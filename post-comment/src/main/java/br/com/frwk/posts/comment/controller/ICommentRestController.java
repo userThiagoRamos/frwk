@@ -1,21 +1,20 @@
 package br.com.frwk.posts.comment.controller;
 
-import java.util.Collection;
-
 import org.springframework.data.domain.Pageable;
 
 import br.com.frwk.posts.comment.base.BaseDTO;
+import br.com.frwk.posts.comment.dto.ResponseDTO;
 
 public interface ICommentRestController<T extends BaseDTO> {
 
-	T create(T dto);
+	ResponseDTO create(String username,T dto);
 
-	T update(String username,T dto);
+	ResponseDTO update(String username,T dto);
 
-	T delete(String username,Long id);
+	ResponseDTO delete(String username,Long id);
 
-	Collection<T> findAll(Pageable pageable);
+	ResponseDTO findAll(Pageable pageable);
 
-	T findOne(Long id);
+	ResponseDTO findOne(Long id);
 
 }

@@ -11,12 +11,13 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import br.com.frwk.posts.comment.base.BaseEntity;
 
 @Entity
 @Table(name = "COMMENT")
-public class CommentEntity extends BaseEntity{
+public class CommentEntity extends BaseEntity {
 
 	private static final long serialVersionUID = 7050040122708987538L;
 
@@ -25,35 +26,20 @@ public class CommentEntity extends BaseEntity{
 	@SequenceGenerator(name = "SQ_COMMENT", sequenceName = "SQ_COMMENT", allocationSize = 1)
 	@Column(name = "id_comment")
 	private Long id;
-		
+
+	@NotNull(message = "Informe o identificador do post")
 	@Column(name = "id_post")
-	private Long postId;
-	
-	@Column(name = "id_user")
-	private Long userId;
-	
+	private Long idPost;
+
+	@NotNull(message = "Informe o nome do usuario")
+	private String username;
+
 	@Column(columnDefinition = "TEXT")
 	private String text;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created_at")
 	private Date createdAt;
-
-	public String getText() {
-		return text;
-	}
-
-	public void setText(String text) {
-		this.text = text;
-	}
-
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
 
 	public CommentEntity(String text, Date createdAt) {
 		super();
@@ -73,20 +59,36 @@ public class CommentEntity extends BaseEntity{
 		this.id = id;
 	}
 
-	public Long getPostId() {
-		return postId;
+	public Long getIdPost() {
+		return idPost;
 	}
 
-	public void setPostId(Long postId) {
-		this.postId = postId;
+	public void setIdPost(Long idPost) {
+		this.idPost = idPost;
 	}
 
-	public Long getUserId() {
-		return userId;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 
 }

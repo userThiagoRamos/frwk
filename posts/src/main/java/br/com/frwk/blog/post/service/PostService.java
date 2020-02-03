@@ -40,6 +40,7 @@ public class PostService implements IPostRestService<PostDTO> {
 		}
 		if (postRepository.existsById(dto.getId())) {
 			PostEntity postEntity = modelMapper.map(dto, PostEntity.class);
+			postEntity.setUsername(username);
 			postRepository.save(postEntity);
 		}
 

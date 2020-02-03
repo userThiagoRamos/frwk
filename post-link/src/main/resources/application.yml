@@ -21,7 +21,7 @@ spring:
     password: frame
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:postgresql://localhost:5432/postgres
-    username: frameuser
+    username: postgres
   cloud:
     config:
       name: blog-configuration-service

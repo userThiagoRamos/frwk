@@ -1,7 +1,5 @@
 package br.com.frwk.posts.comment.controller;
 
-import java.util.Collection;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.frwk.posts.comment.base.IConstants;
 import br.com.frwk.posts.comment.dto.CommentDTO;
+import br.com.frwk.posts.comment.dto.ResponseDTO;
 import br.com.frwk.posts.comment.service.CommentService;
 
 @RestController
@@ -29,32 +28,37 @@ public class CommentController implements ICommentRestController<CommentDTO>{
 
 	@PostMapping
 	@Override
-	public CommentDTO create(@Valid @RequestBody CommentDTO dto) {
-		return service.create(dto);
+	public ResponseDTO create(@RequestHeader(name = IConstants.HEADER_USERNAME) String username, @Valid @RequestBody CommentDTO dto) {
+		return ResponseDTO.withData(service.create(username,dto));
 	}
 
 	@PutMapping
 	@Override
-	public CommentDTO update(@RequestHeader(name = IConstants.HEADER_USERNAME) String username, @Valid @RequestBody CommentDTO dto) {
-		return service.update(username, dto);
+	public ResponseDTO update(@RequestHeader(name = IConstants.HEADER_USERNAME) String username, @Valid @RequestBody CommentDTO dto) {
+		return ResponseDTO.withData(service.update(username, dto));
 	}
 
-	@DeleteMapping("/id")
+	@DeleteMapping("/{id}")
 	@Override
-	public CommentDTO delete(@RequestHeader(name = IConstants.HEADER_USERNAME) String username, @PathVariable("id") Long id) {
-		return service.delete(username, id);
+	public ResponseDTO delete(@RequestHeader(name = IConstants.HEADER_USERNAME) String username, @PathVariable("id") Long id) {
+		return ResponseDTO.withData(service.delete(username, id));
 	}
 
 	@GetMapping("/all")
 	@Override
-	public Collection<CommentDTO> findAll(Pageable pageable) {
-		return service.findAll(pageable);
+	public ResponseDTO findAll(Pageable pageable) {
+		return ResponseDTO.withData(service.findAll(pageable));
 	}
 
 	@GetMapping("/{id}")
 	@Override
-	public CommentDTO findOne(@Valid @PathVariable("id") Long id) {
-		return service.findOne(id);
+	public ResponseDTO findOne(@Valid @PathVariable("id") Long id) {
+		return ResponseDTO.withData(service.findOne(id));
+	}
+	
+	@GetMapping("/post/{idPost}")
+	public ResponseDTO findAllByIdPost(@PathVariable("idPost") Long idPost) {
+		return ResponseDTO.withData(service.getAllByIdPost(idPost));
 	}
 
 }

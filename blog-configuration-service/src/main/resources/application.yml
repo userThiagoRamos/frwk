@@ -19,5 +19,3 @@ spring:
   cloud:    config:      server:        git:          uri: https://github.com/userThiagoRamos/frwk
           search-paths: config-server/
           skip-ssl-validation: true
-          username: thiagoram@gmail.com
-          password: gael@github2019

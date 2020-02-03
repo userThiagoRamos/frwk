@@ -8,7 +8,7 @@ import br.com.frwk.posts.comment.base.BaseDTO;
 
 public interface ICommentRestService<T extends BaseDTO> {
 
-	T create(T dto);
+	T create(String username,T dto);
 
 	T update(String username,T dto);
 

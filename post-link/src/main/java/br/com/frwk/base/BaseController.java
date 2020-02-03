@@ -18,7 +18,7 @@ public abstract class BaseController<E extends BaseEntity, D extends BaseDTO> {
 
 	protected abstract BaseService<E, D> getService();
 
-	@GetMapping
+	@GetMapping(value = "/all")
 	public ResponseDTO findAll() {
 		List<E> resultList = getService().findAll();
 		return ResponseDTO.withData(resultList);

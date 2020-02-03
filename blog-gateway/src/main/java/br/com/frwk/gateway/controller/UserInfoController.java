@@ -4,6 +4,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,7 @@ import br.com.frwk.gateway.model.UserInfo;
 import br.com.frwk.gateway.repository.UserInfoRepository;
 
 @RestController
+@CrossOrigin
 public class UserInfoController {
 
 	final private UserInfoRepository userInfoRepository;
@@ -21,11 +23,11 @@ public class UserInfoController {
 		this.userInfoRepository = userInfoRepository;
 	}
 
-	@PostMapping("/user")
+	@PostMapping("/signup")
 	public Boolean create(@RequestBody Map<String, String> body) throws NoSuchAlgorithmException {
 		String username = body.get("username");
 		if (userInfoRepository.existsByUsername(username)) {
-			throw new ValidationException("Username already existed");
+			throw new ValidationException("Usuário já registrado");
 		}
 
 		String password = body.get("password");

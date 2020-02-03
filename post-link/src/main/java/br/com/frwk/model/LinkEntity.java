@@ -22,6 +22,7 @@ public class LinkEntity extends BaseEntity{
 	@Column(name = "id_link")
 	private Long id;
 	
+	private Long idPost;
 	private String description;
 	private String href;
 	
@@ -43,5 +44,12 @@ public class LinkEntity extends BaseEntity{
 	public void setHref(String href) {
 		this.href = href;
 	}
+	public Long getIdPost() {
+		return idPost;
+	}
+	public void setIdPost(Long idPost) {
+		this.idPost = idPost;
+	}
+	
 
 }

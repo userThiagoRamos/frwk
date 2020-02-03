@@ -1,4 +1,4 @@
-package br.com.frwk.posts.comment.exception;
+package br.com.frwk.exception;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import br.com.frwk.posts.comment.dto.ResponseDTO;
+import br.com.frwk.dto.ResponseDTO;
 import lombok.extern.slf4j.Slf4j;
 
 @ControllerAdvice

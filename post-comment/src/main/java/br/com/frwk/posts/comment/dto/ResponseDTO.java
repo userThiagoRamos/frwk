@@ -14,11 +14,26 @@ public class ResponseDTO {
 
 	private Object data;
 	private String message;
-	
-	public ResponseDTO(String message) {
+	private String details;
+
+	private ResponseDTO(Object data) {
 		super();
-		this.message = message;
+		this.message = "sucessso";
+		this.data = data;
 	}
-	
-	
+
+	private ResponseDTO(String details) {
+		super();
+		this.message = "error";
+		this.details = details;
+	}
+
+	public static ResponseDTO withData(Object data) {
+		return new ResponseDTO(data);
+	}
+
+	public static ResponseDTO forError(String details) {
+		return new ResponseDTO(details);
+	}
+
 }

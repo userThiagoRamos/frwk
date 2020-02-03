@@ -13,7 +13,7 @@ public class AuthenticatedFilter extends ZuulFilter {
 	@Override
 	public boolean shouldFilter() {
 		SecurityContext context = SecurityContextHolder.getContext();
-		return context.getAuthentication().isAuthenticated();
+		return context.getAuthentication() != null && context.getAuthentication().isAuthenticated();
 	}
 
 	@Override
