@@ -1,0 +1,21 @@
+<div class="card-body">
+  <table class="table table-bordered table-striped table-sm">
+    <thead>
+      <tr>
+        <th>Titulo</th>
+        <th class="text-center" colspan="2">Ações</th>
+      </tr>
+    </thead>
+    <tbody class="cursor-pointer text-uppercase">
+      <tr *ngFor="let post of posts">
+        <td> {{ post.title }} </td>
+        <td class="text-center">
+          <button (click)=editPost(post)>Editar</button>
+        </td>
+        <td class="text-center">
+          <button *ngIf="post.isOwner" (click)="removePost(post)" clas="fa fa-trash">Remover</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

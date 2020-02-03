@@ -1,0 +1,19 @@
+<div class="card-body" [formGroup]="commentForm" (ngSubmit)="onSubmit(commentForm.value)">
+  <div formArrayName="comments">
+    <button class="btn btn-sm btn-success" type="button" (click)="addComment()">+</button>
+    <div *ngFor="let comment of commentItens.controls; let i = index" class="col-sm">
+
+      <div class="col-sm">
+        <label for="text">Comentario</label>
+        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2"
+          [formControlName]="text" cdkAutosizeMaxRows="10" placeholder="Texto do post" autocomplete="off"></textarea>
+      </div>
+      <div class="col-sm text-right">
+        <div>
+          <button class="btn btn-sm btn-danger pull-right mr-2" type="button" (click)="delete(i)">-</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
