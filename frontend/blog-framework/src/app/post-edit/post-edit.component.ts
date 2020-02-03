@@ -36,8 +36,6 @@ export class PostEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('ola');
-
     this.currentPost = history.state as Post;
     this.loadPostCommentsAndLinks();
     this.hasError = false;

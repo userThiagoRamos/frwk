@@ -6,6 +6,7 @@ import { CommentDTO } from '../model/comment.model';
 import { Post } from '../model/post.model';
 import { CommentService } from '../_services/comment.service';
 import { TokenStorageService } from '../_services/token-storage.service';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-comment',
@@ -18,7 +19,7 @@ export class CommentComponent implements OnInit {
   hasError: boolean;
   editMode: boolean;
   currentId: number;
-  comments: FormArray;
+  comments: Array<any>;
   initialState: any;
   username: string;
 
@@ -40,7 +41,7 @@ export class CommentComponent implements OnInit {
   }
 
   get commentItens() {
-    return <FormArray>this.commentForm.get('comments');
+    return this.commentForm.get('comments') as FormArray;
   }
 
   ngOnInit() {
@@ -52,7 +53,13 @@ export class CommentComponent implements OnInit {
 
   createForm() {
     this.commentForm = this.fb.group({
-      comments: this.fb.array([])
+      comments: this.fb.array([
+        this.fb.group({
+          id: [''],
+          text: [''],
+          username: ['']
+        })
+      ])
     });
     this.initialState = this.commentForm.value;
   }
@@ -61,10 +68,12 @@ export class CommentComponent implements OnInit {
     if (this.currentPost != null && this.currentPost.id != null) {
       try {
         this.service.getCommentsByIdPost(this.currentPost.id).subscribe(res => {
-          const list = res.data;
-          list.forEach((c: any) => {
-            this.commentItens.controls.push(c.text);
+          this.comments = new Array<any>();
+          const listComment = res.data as Array<CommentDTO>;
+          listComment.forEach((c: any) => {
             c.isOwner = c.username === this.username;
+            this.comments.push(c);
+            this.addComment(c);
           });
         });
       } catch (error) {
@@ -73,12 +82,12 @@ export class CommentComponent implements OnInit {
     }
   }
 
-  public addComment() {
+  public addComment(comment: any) {
     const control = this.commentItens;
     control.push(
       this.fb.group({
-        id: [''],
-        text: ['']
+        id: [comment.id || ''],
+        text: [comment.text || '']
       })
     );
   }
